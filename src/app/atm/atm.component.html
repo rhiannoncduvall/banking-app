@@ -1,24 +1,66 @@
 <h1>ATM View</h1>
 <div class="main">
   <section class="display">
-    > Welcome, Henry!
+    > Welcome, {{ bank.account.fname }}
     <!-- Display Feedback information here -->
-  </section>
+
+    <!-- Show latest transaction after a successful transaction -->
+      <p *ngIf="bank.showLatest === true" id="transaction-details">
+        <span>Success! Transaction details: </span>
+        <br><br>
+        <b>Date:</b> {{ transactions[transactions.length-1].date }} 
+        <br>
+        <b>Type:</b> {{ transactions[transactions.length-1].type }} 
+        <br>
+        <b>Amount:</b> ${{ transactions[transactions.length-1].amount }}
+        <br><br>
+        <b>Current balance:</b> ${{ this.bank.account.balance }}
+      </p>
+
+      <!-- Show current balance when customer clicks Balance Inquiry button -->
+      <p *ngIf="showBalance === true" id ="balance-details">
+          Your current account balance: <br><br>
+          ${{ this.bank.account.balance }} <br><br>
+          <button (click)=balance()>Cancel</button>
+      </p>
+
+    <!-- Show a list of the three most recent transactions when customer clicks Transaction History -->
+      <div  *ngIf="bank.showTransactions === true" id="transactions-list">
+          Recent Account Activity: <br>
+        <ul *ngFor="let transaction of transactions | slice:0:3; index as i">
+          <li><b>Date:</b> {{ transactions[transactions.length-i-1].date }}</li>
+          <li><b>Type:</b> {{ transactions[transactions.length-i-1].type }}</li>
+          <li><b>Amount:</b> ${{ transactions[transactions.length-i-1].amount }}</li>
+        </ul>
+        <button (click)="bank.history()">Cancel</button>
+      </div>
+
+    </section>
   <aside class="options">
-    <!-- Add functionality to the buttons below -->
     <ul class="options-list">
-      <li class="options-item">
-        <button>Make a Widthdrawl</button>
+      <li>
+        <p>
+          Enter amount here: {{ value }} <br>
+          <input type="number" [(ngModel)]="bank.value">
+        </p>
+      <br><br>
       </li>
       <li class="options-item">
-        <button>Deposit Money</button>
+        <button (click)="bank.withdraw()" [disabled]="!bank.value">Withdrawal</button>
       </li>
+      <br><br>
       <li class="options-item">
-        <button>Balance Inquiry</button>
+        <button (click)="bank.deposit()" [disabled]="!bank.value">Deposit</button>
       </li>
+      <br><br>
       <li class="options-item">
-        <button>Transactions History</button>
+        <button (click)="balance()">Balance Inquiry</button>
       </li>
+      <br><br>
+      <li class="options-item">
+        <button (click)="bank.history()">Transactions History</button>
+      </li>
+      
     </ul>
   </aside>
 </div>

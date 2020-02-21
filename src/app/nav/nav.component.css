@@ -4,7 +4,23 @@
   list-style:none;
   justify-content:space-between;
   align-items: stretch;
+  background-color: #5FB3E6;
+  color: rgba(255, 255, 255, 0.899);
+  border-radius: 60px;
+  margin: 10px;
+  font-family: sans-serif;
+  padding: 5px;
 }
 .nav li {
   margin:0 auto;
+}
+
+.nav a {
+  color: #224870;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  color: white;
 }

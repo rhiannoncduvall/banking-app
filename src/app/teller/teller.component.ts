@@ -7,7 +7,8 @@ import { BankService } from '../bank.service';
   styleUrls: ['./teller.component.css']
 })
 export class TellerComponent {
+  transactions = this.bank.account.transactions;
 
-  constructor() { }
+  constructor( public bank: BankService) { }
 
 }

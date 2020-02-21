@@ -3,34 +3,50 @@
   <section class="display">
     <!-- Display: Customer information except for when inquiring about transaction -->
     <h3>Customer Information</h3>
-    <p>Customer Name: First Last</p>
-    <p>Age: 100</p>
-    <p>Address: 1234 Test Lane.<br>
-      San Diego, CA 92000<br>
-      United States
+    <p>Customer Name: {{ bank.account.fname }} {{ bank.account.lname }}</p>
+    <p>Age: {{ bank.account.age }}</p>
+    <p>Address: {{ bank.account.address.street }}<br>
+      {{ bank.account.address.city }}, {{ bank.account.address.state }} {{ bank.account.address.zip }}<br>
+      {{ bank.account.address.country }}
     </p>
     <br><br>
     <!-- Display: if inquiring about transactions -->
-    <h3>Last 3 Transactions</h3>
-    <p>[01-01-2018] -  Deposit ($20 USD)</p>
-    <p>[01-01-2018] -  Withdrawal ($40 USD)</p>
-    <p>[01-01-2018] -  Deposit ($20 USD)</p>
+    <div  *ngIf="bank.showTransactions === true">
+        Recent Account Activity: <br>
+      <ul *ngFor="let transaction of bank.account.transactions | slice:0:3; index as i">
+        <li><b>Date:</b> {{ transactions[transactions.length-i-1].date }}</li>
+        <li><b>Type:</b> {{ transactions[transactions.length-i-1].type }}</li>
+        <li><b>Amount:</b> ${{ transactions[transactions.length-i-1].amount }}</li>
+      </ul>
+      <button (click)="bank.history()">Cancel</button>
+    </div>
+
   </section>
   <aside class="options">
     <section class="balance">
       <!-- Display customer balance -->
-      $20.00 USD
+      <b>Account Balance:</b><br>
+      ${{bank.account.balance}} USD
     </section>
     <!-- Add functionality to the buttons below -->
     <ul class="options-list">
-      <li class="options-item">
-        <button>Widthdrawl for Customer</button>
+      <li>
+        <p>
+            Enter amount here: {{ value }} <br>
+            <input type="number" [(ngModel)]="bank.value">
+          </p>
+          <br><br>
       </li>
       <li class="options-item">
-        <button>Deposit for Customer</button>
+        <button (click)="bank.withdraw()" [disabled]="!bank.value">Withdrawal for Customer</button>
       </li>
+      <br><br>
       <li class="options-item">
-        <button>Customer Transaction History</button>
+        <button (click)="bank.deposit()" [disabled]="!bank.value">Deposit for Customer</button>
+      </li>
+      <br><br>
+      <li class="options-item">
+        <button (click)="bank.history()">Transaction History</button>
       </li>
     </ul>
   </aside>

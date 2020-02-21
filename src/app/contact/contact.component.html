@@ -1,0 +1,26 @@
+<h1>Contact Us</h1>
+<div class="main">
+  <section class="display">
+      <p>
+        Let us know how we're doing. To contact us, fill out the form on this page.
+      </p>
+
+    </section>
+
+  <aside class="options">
+    <ul class="contact-form">
+      <li>
+           First Name: 
+          <input type="text" [(ngModel)]="bank.account.fname"> <br><br>
+          Last Name: 
+          <input type="text" [(ngModel)]="bank.account.lname"> <br><br>
+          Email: 
+          <input type="email" [(ngModel)]="userEmail"> <br><br>
+          Your Message: <br>
+          <textarea id="message-box" [(ngModel)]="message"></textarea>
+      <br><br>
+        <button (click)="submitMsg()">Submit</button>
+      </li>      
+    </ul>
+  </aside>
+</div>

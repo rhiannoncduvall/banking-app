@@ -1,26 +1,105 @@
-.balance {
-  display: block;
+h1 {
+  background-color: #224870;
+  color: rgba(255, 255, 255, 0.899);
+  border-radius: 50px;
+  margin: 10px;
+  font-family: sans-serif;
+  font-size: 26px;
+  padding: 5px;
 }
 
 .main {
   display: flex;
   flex-flow: row nowrap;
+  flex-grow: 1;
+  background-color: #122C34;
 }
 
+/* Where messages are contained */
+/* Need to have this stretch to fit the content overflow */
 .display {
   flex-basis: 50vw;
-  background-color: darkslategrey;
+  height: 70vh;
+  background-color: #709CCB;
   color: white;
+  margin: 0 10px 0 10px;
+  border: solid #709CCB 1px;
+  border-radius: 20px;
+  padding: 20px;
+  font-family: sans-serif;
+  overflow-y: auto;
 }
 
+.display > * > ul {
+  list-style-type: none;
+  padding: 0;
+  padding-top: 10px;
+
+}
+
+.display > * > button {
+  border: 2px solid #224870;
+  background-color: #224870;
+  color: white;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+#transactions-list {
+  text-align: center;
+}
 .options {
   flex-basis: 50vw;
+  background-color: #709CCB;
+  margin: 0 10px 0 10px;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .options-list {
-  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  padding-top: 15px;
+  font-family: sans-serif;
+  color: white;
 }
 
-.options-item {
+input {
+  border: solid 6px #2A4494;
+  border-radius: 50px;
+  font-size: 22px;
+  height: 40px;
+  width: 230px;
+  box-shadow: 5px 5px 16px -6px rgba(0,0,0,0.62);
+  text-align: center;
+}
 
+.options-item > button{
+  border: solid 6px #44CFCB;
+  border-radius: 50px;
+  font-size: 18px;
+  height: 50px;
+  width: 250px;
+  box-shadow: 5px 5px 16px -6px rgba(0,0,0,0.62);
+}
+
+.options-item > button:hover{
+  border: solid 6px #5FB3E6;
+  background-color: #2A4494;
+  color: white;
+  cursor: pointer;
+}
+
+.options-item > button:active{
+  background-color: #224870;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.balance {
+  font-family: sans-serif;
+  color: white;
+  padding-top: 20px;
 }
